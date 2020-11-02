@@ -135,8 +135,8 @@
 <span id="132">132</span>
 <span id="133">133</span>
 <span id="134">134</span>
-<span id="135">135</span>
 </pre><div class="example-wrap"><pre class="rust ">
+<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">handshake_cache</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">handshake_header</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">handshake_message_certificate</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">handshake_message_certificate_request</span>;
@@ -153,8 +153,6 @@
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">fmt</span>;
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">io</span>::{<span class="ident">Read</span>, <span class="ident">Write</span>};
 
-<span class="comment">//use byteorder::{ReadBytesExt, WriteBytesExt};</span>
-
 <span class="kw">use</span> <span class="ident">util</span>::<span class="ident">Error</span>;
 
 <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">content</span>::<span class="kw-2">*</span>;
@@ -164,7 +162,7 @@
 <span class="kw">use</span> <span class="ident">handshake_message_finished</span>::<span class="kw-2">*</span>;
 
 <span class="comment">// https://tools.ietf.org/html/rfc5246#section-7.4</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">Hash</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">HandshakeType</span> {
     <span class="ident">HelloRequest</span> <span class="op">=</span> <span class="number">0</span>,
     <span class="ident">ClientHello</span> <span class="op">=</span> <span class="number">1</span>,
