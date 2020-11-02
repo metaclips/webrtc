@@ -64,9 +64,9 @@
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">PartialEq</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">HandshakeHeader</span> {
-    <span class="kw">pub</span> <span class="ident">handshake_type</span>: <span class="ident">HandshakeType</span>,
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">handshake_type</span>: <span class="ident">HandshakeType</span>,
     <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">length</span>: <span class="ident">u32</span>, <span class="comment">// uint24 in spec</span>
-    <span class="kw">pub</span> <span class="ident">message_sequence</span>: <span class="ident">u16</span>,
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">message_sequence</span>: <span class="ident">u16</span>,
     <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">fragment_offset</span>: <span class="ident">u32</span>, <span class="comment">// uint24 in spec</span>
     <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">fragment_length</span>: <span class="ident">u32</span>, <span class="comment">// uint24 in spec</span>
 }
