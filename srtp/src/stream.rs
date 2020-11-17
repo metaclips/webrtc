@@ -1,3 +1,4 @@
+use crate::session::StreamSession;
 use transport::Buffer;
 use util::Error;
 
@@ -10,6 +11,12 @@ pub(crate) const SRTP_BUFFER_SIZE: usize = 1000 * 1000;
 
 /// Limit the buffer size to 100KB
 pub(crate) const SRTCP_BUFFER_SIZE: usize = 100 * 1000;
+
+pub(crate) trait ReadStream {
+    fn new(child: impl StreamSession, ssrc: u32) -> Result<(), Error>;
+    fn read(buf: &[u8]) -> Result<u64, Error>;
+    fn get_ssrc() -> u32;
+}
 
 /// Stream handles decryption for a single RTP/RTCP SSRC
 pub struct Stream {
