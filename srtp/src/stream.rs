@@ -6,10 +6,10 @@ use tokio::sync::mpsc;
 use std::io::Cursor;
 
 /// Limit the buffer size to 1MB
-pub const SRTP_BUFFER_SIZE: usize = 1000 * 1000;
+pub(crate) const SRTP_BUFFER_SIZE: usize = 1000 * 1000;
 
 /// Limit the buffer size to 100KB
-pub const SRTCP_BUFFER_SIZE: usize = 100 * 1000;
+pub(crate) const SRTCP_BUFFER_SIZE: usize = 100 * 1000;
 
 /// Stream handles decryption for a single RTP/RTCP SSRC
 pub struct Stream {

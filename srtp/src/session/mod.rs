@@ -1,7 +1,8 @@
+pub mod config;
 mod session_rtcp_test;
 mod session_rtp_test;
 
-use crate::{config::Config, context::Context, option, stream::Stream};
+use crate::{context::Context, option, stream::Stream};
 
 use transport::{buffer::ERR_BUFFER_FULL, Buffer};
 use util::Error;
@@ -16,6 +17,13 @@ use std::{
     io::{BufWriter, Cursor},
     sync::Arc,
 };
+
+// ToDo: Use stream session traits.
+pub(super) trait StreamSession {
+    fn close() -> Result<(), Error>;
+    fn write(payload: &[u8]) -> Result<i64, Error>;
+    fn decrypt(payload: &[u8]) -> Result<(), Error>;
+}
 
 const DEFAULT_SESSION_SRTP_REPLAY_PROTECTION_WINDOW: usize = 64;
 const DEFAULT_SESSION_SRTCP_REPLAY_PROTECTION_WINDOW: usize = 64;
@@ -35,7 +43,7 @@ pub struct Session {
 }
 
 impl Session {
-    pub async fn new(conn: UdpSocket, config: Config, is_rtp: bool) -> Result<Self, Error> {
+    pub async fn new(conn: UdpSocket, config: config::Config, is_rtp: bool) -> Result<Self, Error> {
         let local_context = Context::new(
             &config.keys.local_master_key,
             &config.keys.local_master_salt,

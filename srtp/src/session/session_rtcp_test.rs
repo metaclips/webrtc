@@ -1,8 +1,8 @@
 #[cfg(test)]
 mod session_rtcp_test {
+    use crate::session::config;
     use crate::{
-        config, context::Context, protection_profile::ProtectionProfile, session::Session,
-        stream::Stream,
+        context::Context, protection_profile::ProtectionProfile, session::Session, stream::Stream,
     };
 
     use std::io::{BufReader, BufWriter};

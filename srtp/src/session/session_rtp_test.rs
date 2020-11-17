@@ -1,8 +1,8 @@
 #[cfg(test)]
 mod session_rtp_test {
     use crate::{
-        config, config::Config, context::Context, protection_profile::ProtectionProfile,
-        session::Session, stream::Stream,
+        context::Context, protection_profile::ProtectionProfile, session::config,
+        session::config::Config, session::Session, stream::Stream,
     };
 
     use std::{collections::HashMap, io::BufWriter, sync::Arc};

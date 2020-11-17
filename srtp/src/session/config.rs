@@ -1,7 +1,6 @@
 use util::Error;
 
-use super::option::*;
-use super::protection_profile::*;
+use crate::{option, protection_profile::ProtectionProfile};
 
 const LABEL_EXTRACTOR_DTLS_SRTP: &str = "EXTRACTOR-dtls_srtp";
 
@@ -34,11 +33,11 @@ pub struct Config {
     /// List of local/remote context options.
     /// ReplayProtection is enabled on remote context by default.
     /// Default replay protection window size is 64.
-    pub local_rtp_options: Option<ContextOption>,
-    pub remote_rtp_options: Option<ContextOption>,
+    pub local_rtp_options: Option<option::ContextOption>,
+    pub remote_rtp_options: Option<option::ContextOption>,
 
-    pub local_rtcp_options: Option<ContextOption>,
-    pub remote_rtcp_options: Option<ContextOption>,
+    pub local_rtcp_options: Option<option::ContextOption>,
+    pub remote_rtcp_options: Option<option::ContextOption>,
 }
 
 impl Config {
